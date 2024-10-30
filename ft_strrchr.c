@@ -1,3 +1,6 @@
+#include <stddef.h> // Add this line for NULL
+#include "libft.h"  // Include your custom header if needed
+
 char *ft_strrchr(const char *s, int c) {
     const char *last = NULL;
     while (*s) {
