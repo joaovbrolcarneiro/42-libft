@@ -3,36 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:11:25 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/11/01 15:01:27 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/01 19:47:55 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/01 19:47:58 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
+#include <stdlib.h>
 
-t_point	create_point(int x, int y)
+static int	num_length(int n)
 {
-	t_point	point;
+	int	length;
 
-	point.x = x;
-	point.y = y;
-	return (point);
+	length = 0;
+	if (n <= 0)
+	{
+		length = 1;
+	}
+	while (n != 0)
+	{
+		n /= 10;
+		length++;
+	}
+	return (length);
 }
 
-void	print_point(t_point p)
+char	*ft_itoa(int n)
 {
-	printf("Point coordinates: (%d, %d)\n", p.x, p.y);
-}
+	char	*str;
+	int		len;
+	long	num;
 
-int	main(void)
-{
-	t_point	my_point;
-
-	my_point = create_point(5, 10);
-	print_point(my_point);
-	return (0);
+	num = n;
+	len = num_length(n);
+	str = (char *)malloc(len + 1);
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	if (num < 0)
+	{
+		str[0] = '-';
+		num = -num;
+	}
+	else if (n == 0)
+	{
+		str[0] = '0';
+	}
+	while (num > 0)
+	{
+		str[--len] = (num % 10) + '0';
+		num /= 10;
+	}
+	return (str);
 }
