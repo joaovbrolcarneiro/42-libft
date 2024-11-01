@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/31 19:03:31 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/10/31 19:03:36 by jbrol-ca         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void ft_bzero(void *s, size_t n) {
-    ft_memset(s, 0, n);  // Ensure ft_memset is called correctly
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
 }

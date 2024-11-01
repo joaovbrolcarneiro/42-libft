@@ -1,9 +1,23 @@
-#include "libft.h"  // Inclui o cabeçalho da libft
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/31 19:50:00 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/10/31 20:29:24 by jbrol-ca         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void ft_putendl_fd(char *s, int fd) {
-    if (s)  // Verifica se a string não é nula
-    {
-        ft_putstr_fd(s, fd);  // Chama a função para imprimir a string
-        write(fd, "\n", 1);   // Adiciona uma nova linha
-    }
+#include "libft.h"  // Inclui o cabeçalho da libft
+#include <unistd.h>
+
+void	ft_putendl_fd(char *s, int fd)
+{
+	if (s)
+	{
+		ft_putstr_fd(s, fd);
+		write(fd, "\n", 1);
+	}
 }
