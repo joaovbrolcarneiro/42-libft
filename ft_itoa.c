@@ -6,13 +6,13 @@
 /*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:11:25 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 19:20:26 by joaovbrolcarn    ###   ########.fr       */
+/*   Updated: 2024/11/01 15:01:27 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "ft_point.h"
+#include "libft.h"
 
 t_point	create_point(int x, int y)
 {
