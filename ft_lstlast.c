@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:40:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 20:06:03 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,25 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (!lst)
+	t_list	*current;
+
+	current = lst;
+	if (!current)
 		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	while (current->next)
+		current = current->next;
+	return (current);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	t_list *arr;
+	char *a = "hello";
+	arr = ft_lstnew(a);
+	arr->next = ft_lstnew("Hello1");
+	printf("%s\n", ft_lstlast(arr));
+	return 0;
+}
+*/

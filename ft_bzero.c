@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:03:31 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 19:03:36 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 21:20:17 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,24 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, 0, n);
+	size_t			i;
+
+	i = 0;
+	while (i < n)
+	{
+		*(char *)s = 0;
+		s++;
+		i++;
+	}
 }
+/*
+#include <stdio.h>
+int main (void)
+{
+	char str[50] = "Hello";
+	size_t	n;
+	n = 4;
+	ft_bzero(str,n);
+	printf("%s\n", str);
+	return (0);
+}*/

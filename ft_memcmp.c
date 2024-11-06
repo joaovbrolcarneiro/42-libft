@@ -3,29 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:50:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 20:18:31 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t			i;
-	unsigned char	*ptr1;
-	unsigned char	*ptr2;
+	unsigned char	*sv1;
+	unsigned char	*sv2;
 
 	i = 0;
-	ptr1 = (unsigned char *)s1;
-	ptr2 = (unsigned char *)s2;
+	sv1 = (unsigned char *) s1;
+	sv2 = (unsigned char *) s2;
 	while (i < n)
 	{
-		if (ptr1[i] != ptr2[i])
-			return (ptr1[i] - ptr2[i]);
+		if (*sv1 != *sv2)
+			return (*sv1 - *sv2);
+		sv1++;
+		sv2++;
 		i++;
 	}
 	return (0);
 }
+
+/*
+#include <stdio.h>
+int main()
+{
+	printf("%d\n", ft_memcmp("", "as", 4));
+	return 0;
+}*/

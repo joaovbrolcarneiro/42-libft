@@ -3,25 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:50:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 20:39:53 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s)
+	int	i;
+	int	l;
+
+	i = ft_strlen(s);
+	l = 0;
+	while (l <= i)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		if (s[l] == (char)c)
+			return ((char *)(s + l));
+		l++;
 	}
-	if (c == '\0')
+	if (!c)
 		return ((char *)s);
 	return (NULL);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	printf("%p\n", ft_strchr("teste", 1024));
+	printf("%p\n", strchr("teste", 1024));
+	return 0;
+}*/

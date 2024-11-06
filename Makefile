@@ -6,7 +6,7 @@
 #    By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/01 19:27:04 by jbrol-ca          #+#    #+#              #
-#    Updated: 2024/11/01 20:38:24 by jbrol-ca         ###   ########.fr        #
+#    Updated: 2024/11/02 20:30:09 by jbrol-ca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_atoi.c \
+SRCS = ft_atoi.c\
 	ft_bzero.c \
 	ft_isalnum.c \
 	ft_isalpha.c \
@@ -64,11 +64,15 @@ BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 all: $(NAME)
 
+%.o: %.c libft.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-bonus: $(BONUS_OBJS)
-	ar rcs $(NAME) $(BONUS_OBJS)
+bonus: $(BONUS_OBJS) $(OBJS)
+	ar rcs $(NAME) $(BONUS_OBJS) $(OBJS)
 
 clean:
 	rm -rf $(OBJS) $(BONUS_OBJS)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:50:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/11/01 19:38:43 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,27 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	const unsigned char	*ptr;
-	size_t				i;
+	size_t			i;
+	unsigned char	d;
+	unsigned char	*sv;
 
-	ptr = (const unsigned char *)s;
+	d = (unsigned char)c;
+	sv = (unsigned char *)s;
 	i = 0;
 	while (i < n)
 	{
-		if (ptr[i] == (unsigned char)c)
-			return ((void *)(ptr + i));
+		if (*(sv) == d)
+			return ((void *)sv);
+		sv++;
 		i++;
 	}
 	return (NULL);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	printf("%s\n", ft_memchr("Hello how", 'h', 3));
+	return 0;
+}*/

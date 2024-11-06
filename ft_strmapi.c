@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 21:40:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 20:47:19 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,36 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*mapped;
-	size_t	i;
+	int				size;
+	char			*tab;
+	int unsigned	i;
 
 	if (!s || !f)
 		return (NULL);
-	mapped = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (!mapped)
+	size = ft_strlen(s);
+	tab = (char *)malloc(sizeof(*tab) * (size + 1));
+	if (!tab)
 		return (NULL);
 	i = 0;
 	while (s[i])
 	{
-		mapped[i] = f(i, s[i]);
+		tab[i] = f(i, s[i]);
 		i++;
 	}
-	mapped[i] = '\0';
-	return (mapped);
+	tab[i] = '\0';
+	return (tab);
 }
+
+/*
+char add(unsigned int i, char s)
+{
+	(void) i;
+	s = s +1;
+	return (s);
+}
+int main(void)
+{
+	printf("%s\n", ft_strmapi("Hello", &add));
+	return 0;
+}
+*/

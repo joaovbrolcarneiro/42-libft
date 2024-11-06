@@ -3,36 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:50:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 20:22:37 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+static void	fill(char *t_dest, char *t_src, size_t n)
 {
 	size_t	i;
 
-	if (!dst && !src)
-		return (NULL);
-	if (dst < src)
+	i = 0;
+	if (t_dest > t_src)
 	{
-		i = 0;
-		while (i < len)
+		while (i < n)
 		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			t_dest[n - i - 1] = t_src[n - i - 1];
 			i++;
 		}
 	}
 	else
 	{
-		while (len--)
+		while (i < n)
 		{
-			((unsigned char *)dst)[len] = ((unsigned char *)src)[len];
+			t_dest[i] = t_src[i];
+			i++;
 		}
 	}
-	return (dst);
 }
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	char	*t_dest;
+	char	*t_src;
+
+	if (!dest && !src)
+		return (NULL);
+	t_dest = (char *)dest;
+	t_src = (char *)src;
+	fill(t_dest, t_src, n);
+	return (t_dest);
+}
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	char src[50] = "Hello how are you";
+	char dest[50];
+	ft_memmove(dest, src, 5);
+	printf("%s\n", dest);
+	return (0);
+}
+*/

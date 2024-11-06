@@ -3,28 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:04:12 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 19:04:16 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*ptr;
-	size_t	i;
+	char	*p;
 
-	ptr = malloc(count * size);
-	if (!ptr)
-		return (NULL);
-	i = 0;
-	while (i < count * size)
-	{
-		((unsigned char *)ptr)[i] = 0;
-		i++;
-	}
-	return (ptr);
+	p = (char *)malloc(nmemb * size);
+	if (p == NULL)
+		return (0);
+	ft_bzero (p, nmemb * size);
+	return (p);
 }
+
+/*int main()
+{	
+		int size = 0;
+		int *junk = 0;
+		srand( time(0) );
+
+		for (int i = 0; i < 1000; i++)
+		{
+				size = rand() % 160;
+				junk = malloc(size * sizeof(int));
+				for ( int j = 0; j < size; j++)
+						junk[j] = rand();
+				free(junk);
+		}
+		int *array;
+		array = ft_calloc(0,sizeof(int));
+		for(int i = 0; i < 1000; i++)
+				printf("%d", array[i]);
+		free(array);
+		return 0;
+}*/

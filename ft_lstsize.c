@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:50:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 20:14:08 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,28 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int	size;
+	t_list	*a;
+	int		i;
 
-	size = 0;
-	while (lst)
+	a = lst;
+	i = 0;
+	while (a)
 	{
-		size++;
-		lst = lst->next;
+		i++;
+		a = a->next;
 	}
-	return (size);
+	return (i);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	t_list *arr;
+	char *a = "hello";
+	arr = ft_lstnew(a);
+	arr->next = ft_lstnew(a);
+	printf("%i\n", ft_lstsize(arr));
+	return 0;
+}
+*/

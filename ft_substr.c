@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 21:40:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 20:55:33 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,40 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*substr;
-	size_t	s_len;
+	char	*p;
+	size_t	i;
+	size_t	size;
+	size_t	l;
 
 	if (!s)
 		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-		return (ft_strdup(""));
-	if (len > s_len - start)
-		len = s_len - start;
-	substr = (char *)malloc(len + 1);
-	if (!substr)
+	size = ft_strlen(s);
+	if (start > size)
+		l = 1;
+	else if (start + len > size)
+		l = size - start + 1;
+	else
+		l = len + 1;
+	p = (char *)malloc(l);
+	if (p == NULL)
 		return (NULL);
-	ft_strlcpy(substr, s + start, len + 1);
-	return (substr);
+	i = 0;
+	while ((start + i) < size && i < len)
+	{
+		p[i] = s[start + i];
+		i++;
+	}
+	p[i] = '\0';
+	return (p);
 }
+
+/*int main()
+{
+		char	*str = "0123456789";
+		size_t	size = 10;
+
+		char	*ret = ft_substr(str, 9, size);
+		printf("%s\n", ret);
+		printf("%d", ft_strlen(ret));
+		return 0;
+}*/

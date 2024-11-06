@@ -3,16 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 21:40:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 20:57:19 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_toupper(int c)
 {
+	int	i;
+
+	i = 0;
 	if (c >= 'a' && c <= 'z')
-		return (c - 32);
+	{
+		i = c - ('a' - 'A');
+		return (i);
+	}
 	return (c);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	char a;
+	char b;
+
+	a = 'A';
+	b = 'b';
+	printf("%c\n%c\n", ft_toupper(a), ft_toupper(b));
+	return 0;
+}*/

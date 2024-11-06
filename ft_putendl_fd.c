@@ -3,21 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:50:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 20:29:24 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"  // Inclui o cabeçalho da libft
-#include <unistd.h>
+#include "libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	if (s)
+	if (!s || !fd)
+		return ;
+	while (*s)
 	{
-		ft_putstr_fd(s, fd);
-		write(fd, "\n", 1);
+		write(fd, s, 1);
+		s++;
 	}
+	write(fd, "\n", 1);
 }
+
+/*#include <fcntl.h>
+int main(void)
+{
+	int	fd;
+
+	fd = open("test", O_RDWR | O_CREAT, 0666);
+	ft_putendl_fd('c', fd);
+	close(fd);
+	return 0;
+}*/

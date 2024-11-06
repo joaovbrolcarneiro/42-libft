@@ -3,86 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:50:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 20:36:51 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/03 19:58:02 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/03 19:58:55 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-static size_t	ft_wordcount(char const *s, char c)
+static int	ft_countwords(char const *s, char c)
 {
-	size_t	count;
-	int		in_substring;
+	unsigned int	count;
+	unsigned int	flag;
+	unsigned int	i;
 
+	i = 0;
+	flag = 0;
 	count = 0;
-	in_substring = 0;
-	while (*s)
+	while (s[i] == c)
+		i++;
+	while (s[i])
 	{
-		if (*s != c && !in_substring)
+		if (s[i] == c)
 		{
-			in_substring = 1;
-			count++;
+			flag = 0;
 		}
-		else if (*s == c)
-			in_substring = 0;
-		s++;
+		else if (s[i] != c && flag == 0)
+		{
+			count++;
+			flag = 1;
+		}
+		i++;
 	}
 	return (count);
 }
 
-static char	*ft_worddup(const char *s, size_t len)
+static char	**ft_free(char **strs)
 {
-	char	*word;
-	size_t	i;
+	unsigned int	i;
 
-	word = (char *)malloc((len + 1) * sizeof(char));
-	if (!word)
+	if (!strs)
 		return (NULL);
 	i = 0;
-	while (i < len)
+	while (strs[i])
 	{
-		word[i] = s[i];
+		free(strs[i]);
+		strs[i] = NULL;
 		i++;
 	}
-	word[len] = '\0';
-	return (word);
+	free(strs);
+	return (NULL);
 }
 
-static void	ft_fill_array(char **array, char const *s, char c)
+static char	**ft_fill(char const *s, char c, char **res)
 {
-	size_t	i;
-	size_t	j;
-	size_t	word_start;
+	unsigned int	i;
+	size_t			word;
 
 	i = 0;
-	j = 0;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] != c)
-		{
-			word_start = i;
-			while (s[i] && s[i] != c)
-				i++;
-			array[j++] = ft_worddup(s + word_start, i - word_start);
-		}
+		while (*s == c && *s)
+			s++;
+		if (!*s)
+			break ;
+		if (!ft_strchr(s, c))
+			word = ft_strlen(s);
 		else
-			i++;
+			word = ft_strchr(s, c) - s;
+		res[i] = ft_substr(s, 0, word);
+		if (!res[i])
+		{
+			ft_free(res);
+			return (0);
+		}
+		i++;
+		s += word;
 	}
-	array[j] = NULL;
+	res[i] = 0;
+	return (res);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**array;
+	char	**res;
 
 	if (!s)
 		return (NULL);
-	array = malloc((ft_wordcount(s, c) + 1) * sizeof(char *));
-	if (!array)
+	res = (char **)malloc((ft_countwords(s, c) + 1) * sizeof(char *));
+	if (!res)
 		return (NULL);
-	ft_fill_array(array, s, c);
-	return (array);
+	res = ft_fill(s, c, res);
+	return (res);
 }

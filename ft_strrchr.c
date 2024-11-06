@@ -3,28 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 21:40:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 20:53:17 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	const char	*last;
+	int	size;
 
-	last = NULL;
-	while (*s)
+	size = ft_strlen(s);
+	while (size >= 0)
 	{
-		if (*s == (char)c)
-			last = s;
-		s++;
+		if (s[size] == (char)c)
+			return ((char *)(s + size));
+		size--;
 	}
-	if (c == '\0')
-		return ((char *)s);
-	return ((char *)last);
+	return (NULL);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	printf("%s\n", ft_strrchr("Hello how", 'h'));
+	return 0;
+}*/

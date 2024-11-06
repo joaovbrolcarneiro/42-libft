@@ -3,32 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 19:02:48 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/10/31 19:02:54 by jbrol-ca         ###   ########.fr       */
+/*   Created: 2024/11/02 19:17:39 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/11/02 19:17:45 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *nptr)
 {
-	int	sign;
-	int	result;
+	int	i;
+	int	neg;
 
-	sign = 1;
-	result = 0;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-' || *str == '+')
+	i = 0;
+	neg = 1;
+	while (*nptr == 32 || (*nptr >= 9 && *nptr <= 13))
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		if (*nptr == '-')
+			neg *= (-1);
+		nptr++;
 	}
-	while (*str >= '0' && *str <= '9')
+	while (*nptr >= '0' && *nptr <= '9')
 	{
-		result = result * 10 + (*str - '0');
-		str++;
+		i = i * 10 + (*nptr - 48);
+		nptr++;
 	}
-	return (result * sign);
+	return (i * neg);
 }
+
+/*
+#include <stdio.h>
+int main (void)
+{
+	char	*str = "	 ---+-+-++2147483648a2b567";
+	printf("%i\n", ft_atoi(str));
+	return (0);
+}
+*/
